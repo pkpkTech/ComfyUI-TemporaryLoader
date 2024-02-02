@@ -8,6 +8,7 @@ import safetensors.torch
 import torch
 
 import comfy.utils
+import comfy.checkpoint_pickle
 
 def download_chunk(url, start_byte, end_byte, result_parts, total_size, pbar_web, pbar_cli):
     thr = total_size // 10
@@ -95,11 +96,11 @@ def load_torch_bin(bin, is_safetensors, safe_load=False, device=None):
             if not "weights_only" in torch.load.__code__.co_varnames:
                 print("Warning torch.load doesn't support weights_only on this pytorch version, loading unsafely.")
                 safe_load = False
-        ckpt = io.BytesIO(bin)
-        if safe_load:
-            pl_sd = torch.load(ckpt, map_location=device, weights_only=True)
-        else:
-            pl_sd = torch.load(ckpt, map_location=device, pickle_module=comfy.checkpoint_pickle)
+        with io.BytesIO(bin) as ckpt:
+            if safe_load:
+                pl_sd = torch.load(ckpt, map_location=device, weights_only=True)
+            else:
+                pl_sd = torch.load(ckpt, map_location=device, pickle_module=comfy.checkpoint_pickle)
         if "global_step" in pl_sd:
             print(f"Global Step: {pl_sd['global_step']}")
         if "state_dict" in pl_sd:
