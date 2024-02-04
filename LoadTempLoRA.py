@@ -19,7 +19,7 @@ class LoadTempLoRA:
                 "model": ("MODEL",),
                 "clip": ("CLIP", ),
                 "ckpt_url": ("STRING", {"default": ""}),
-                "ckpt_type": (["safetensors", "other"], {"default": "safetensors"}),
+                "ckpt_type": (["auto", "safetensors", "other"], {"default": "auto"}),
                 "download_split": ("INT", {"default": 4, "min": 1, "max": 8, "step": 1}),
                 "strength_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
                 "strength_clip": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
@@ -48,7 +48,8 @@ class LoadTempLoRA:
             if bin is None:
                 raise file_name if file_name is not None else Exception("Download failed.")
 
-            lora = load_torch_bin(bin, ckpt_type=="safetensors" or file_name.endswith(".safetensors"), safe_load=True)
+            is_safetensors = file_name.endswith(".safetensors") if ckpt_type =="auto" else ckpt_type == "safetensors"
+            lora = load_torch_bin(bin, is_safetensors, safe_load=True)
             self.loaded_lora = (ckpt_url, lora)
 
         model_lora, clip_lora = comfy.sd.load_lora_for_models(model, clip, lora, strength_model, strength_clip)

@@ -18,7 +18,7 @@ class LoadTempCheckpoint:
         return {
             "required": {
                 "ckpt_url": ("STRING", {"default": ""}),
-                "ckpt_type": (["safetensors", "other"], {"default": "safetensors"}),
+                "ckpt_type": (["auto", "safetensors", "other"], {"default": "auto"}),
                 "download_split": ("INT", {"default": 4, "min": 1, "max": 8, "step": 1})
             },
         }
@@ -34,7 +34,8 @@ class LoadTempCheckpoint:
         if bin is None:
             raise file_name if file_name is not None else Exception("Download failed.")
 
-        sd = load_torch_bin(bin, ckpt_type=="safetensors" or file_name.endswith(".safetensors"))
+        is_safetensors = file_name.endswith(".safetensors") if ckpt_type =="auto" else ckpt_type == "safetensors"
+        sd = load_torch_bin(bin, is_safetensors)
         sd_keys = sd.keys()
         clip = None
         clipvision = None
