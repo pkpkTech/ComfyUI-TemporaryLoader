@@ -12,5 +12,5 @@ The "Load Checkpoint (Temporary)" and "Load LoRA (Temporary)" nodes will be adde
 
 In addition to the standard Load node, the following items are added
 - ckpt_url: URL of the model
-- ckpt_type: Select whether the model you want to use is safetensors or other. If the file name extension of the downloaded file is `.safetensors`, it will be loaded as safetensors even if you select other.
+- ckpt_type: With `auto`, it looks at the file extension of the downloaded file.
 - download_split: Specify the number of splits for parallel downloading.
