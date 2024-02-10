@@ -20,14 +20,14 @@ This is a node for loading multiple LoRAs.<br>
 It can be loaded by URL or by specifying a filename in the same way as the standard LoRA Loader.<br>
 Follow the format below
 
-`{LoRA URL}` or `file:{LoRA file name}` - e.g.) `https://example.com/anylora.safetensors` or `file:anylora.safetensors`
+`{LoRA URL}` or `file:{LoRA file name}`<br>- e.g.) `https://example.com/anylora.safetensors` or `file:anylora.safetensors`
 
-`{strength_model}:{strength_clip}:{LoRA URL} or file:{LoRA file name}` - e.g.) `0.4:1.0:https://example.com/anylora.safetensors`
+`{strength_model}:{strength_clip}:{LoRA URL} or file:{LoRA file name}`<br>- e.g.) `0.4:1.0:https://example.com/anylora.safetensors`
 
-`{strength_model}:{strength_clip}:{ckpt_type}:{LoRA URL} or file:{LoRA file name}` - e.g.) `0.4:1.0:other:https://example.com/anylora.pt`
+`{strength_model}:{strength_clip}:{ckpt_type}:{LoRA URL} or file:{LoRA file name}`<br>- e.g.) `0.4:1.0:other:https://example.com/anylora.pt`
 
-LoRAs for which strength_model, strength_clip and ckpt_type are not specified in text will reflect the node's set values.
-You can also specify only a part - e.g.) `0.1::https://example.com/anylora.safetensors` (strength_model is 0.1, strength_clip and ckpt_type follow node settings).
+LoRAs for which strength_model, strength_clip and ckpt_type are not specified in text will reflect the node's set values.<br>
+You can also specify only a part.<br>- e.g.) `0.1::https://example.com/anylora.safetensors` (strength_model is 0.1, strength_clip and ckpt_type follow node settings).
 
 To avoid confusion as to what LoRA it is, you can also write a comment.
 Comments should start the line with `#`.
