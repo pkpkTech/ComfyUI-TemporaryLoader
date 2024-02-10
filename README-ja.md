@@ -21,14 +21,14 @@
 URL、または標準のLoRA Loaderと同じようにファイル名を指定して読み込みます。<br>
 下記のフォーマットに従って記述してください
 
-`{LoRA URL}` or `file:{LoRA file name}` - 例) `https://example.com/anylora.safetensors` or `file:anylora.safetensors`
+`{LoRA URL}` or `file:{LoRA file name}`<br>- 例) `https://example.com/anylora.safetensors` or `file:anylora.safetensors`
 
-`{strength_model}:{strength_clip}:{LoRA URL} or file:{LoRA file name}` - 例) `0.4:1.0:https://example.com/anylora.safetensors`
+`{strength_model}:{strength_clip}:{LoRA URL} or file:{LoRA file name}`<br>- 例) `0.4:1.0:https://example.com/anylora.safetensors`
 
-`{strength_model}:{strength_clip}:{ckpt_type}:{LoRA URL} or file:{LoRA file name}` - 例) `0.4:1.0:other:https://example.com/anylora.unknownext`
+`{strength_model}:{strength_clip}:{ckpt_type}:{LoRA URL} or file:{LoRA file name}`<br>- 例) `0.4:1.0:other:https://example.com/anylora.unknownext`
 
 strength_model、strength_clip、ckpt_typeをテキストで指定していないLoRAには、ノードの設定値が反映されます。<br>
-一部のみ指定することもできます - 例) `0.1::https://example.com/anylora.safetensors` (strength_modelが0.1になり、strength_clipとckpt_typeはノードの設定に従う)
+一部のみ指定することもできます。<br>- 例) `0.1::https://example.com/anylora.safetensors` (strength_modelが0.1になり、strength_clipとckpt_typeはノードの設定に従う)
 
 何のLoRAか忘れないようにコメントを書くこともできます。<br>
 コメントは行頭を`#`にしてください。
